@@ -1,2 +1,6 @@
+# general ignores
 venv
 .vscode
+
+# custom ignores for nithin
+temp.py
