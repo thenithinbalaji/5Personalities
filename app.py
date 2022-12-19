@@ -1,16 +1,43 @@
+#####################################################
 import pandas as pd
+from flask import Flask, render_template, request
 from numpy import *
-import numpy as np
-from sklearn import preprocessing
-from sklearn import datasets, linear_model
-from sklearn.metrics import mean_squared_error, r2_score
-from sklearn import metrics
-from sklearn import neighbors
-from flask import Flask, request, render_template
+from sklearn import linear_model
+
+#####################################################
 
 app = Flask(__name__)
 
+#####################################################
+# Loading Dataset Globally
+data = pd.read_csv("dataset.csv")
+array = data.values
 
+for i in range(len(array)):
+    if array[i][0] == "Male":
+        array[i][0] = 1
+    else:
+        array[i][0] = 0
+
+df = pd.DataFrame(array)
+
+maindf = df[[0, 1, 2, 3, 4, 5, 6]]
+mainarray = maindf.values
+
+temp = df[7]
+train_y = temp.values
+train_y = temp.values
+
+for i in range(len(train_y)):
+    train_y[i] = str(train_y[i])
+
+mul_lr = linear_model.LogisticRegression(
+    multi_class="multinomial", solver="newton-cg", max_iter=1000
+)
+mul_lr.fit(mainarray, train_y)
+#####################################################
+
+# homepage and the route that loads after form is submitted
 @app.route("/", methods=["POST", "GET"])
 def home():
     if request.method == "GET":
@@ -18,7 +45,7 @@ def home():
 
     else:
 
-        data = [
+        inputdata = [
             [
                 request.form["gender"],
                 request.form["age"],
@@ -30,50 +57,15 @@ def home():
             ]
         ]
 
-        dataframe = pd.DataFrame(data)
-        dataframe.to_csv("datagen/input.csv", index=False, mode="a", header=False)
-
-        data = pd.read_csv("dataset.csv")
-        array = data.values
-
-        for i in range(len(array)):
-            if array[i][0] == "Male":
-                array[i][0] = 1
+        for i in range(len(inputdata)):
+            if inputdata[i][0] == "Male":
+                inputdata[i][0] = 1
             else:
-                array[i][0] = 0
+                inputdata[i][0] = 0
 
-        df = pd.DataFrame(array)
-
-        maindf = df[[0, 1, 2, 3, 4, 5, 6]]
-        mainarray = maindf.values
-        print(mainarray)
-
-        temp = df[7]
-        train_y = temp.values
-        train_y = temp.values
-
-        for i in range(len(train_y)):
-            train_y[i] = str(train_y[i])
-
-        mul_lr = linear_model.LogisticRegression(
-            multi_class="multinomial", solver="newton-cg", max_iter=1000
-        )
-        mul_lr.fit(mainarray, train_y)
-
-        testdata = pd.read_csv("datagen/input.csv")
-        test = testdata.values
-
-        for i in range(len(test)):
-            if test[i][0] == "Male":
-                test[i][0] = 1
-            else:
-                test[i][0] = 0
-
-        df1 = pd.DataFrame(test)
-
+        df1 = pd.DataFrame(inputdata)
         testdf = df1[[0, 1, 2, 3, 4, 5, 6]]
         maintestarray = testdf.values
-        print(maintestarray)
 
         y_pred = mul_lr.predict(maintestarray)
         for i in range(len(y_pred)):
@@ -81,12 +73,21 @@ def home():
         DF = pd.DataFrame(y_pred, columns=["Predicted Personality"])
         DF.index = DF.index + 1
         DF.index.names = ["Person No"]
-        DF.to_csv("datagen/output.csv")
 
-        df = pd.read_csv("datagen/output.csv")
+        return render_template("res.html", per=DF["Predicted Personality"].tolist()[0])
 
-        return render_template("res.html", per=df["Predicted Personality"].tolist()[-1])
+
+# Handling error 404
+@app.errorhandler(404)
+def not_found_error(error):
+    return render_template("error.html", code=404, text="Page Not Found"), 404
+
+
+# Handling error 500
+@app.errorhandler(500)
+def internal_error(error):
+    return render_template("error.html", code=500, text="Internal Server Error"), 500
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True)  # change this in production
