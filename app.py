@@ -37,23 +37,28 @@ mul_lr = linear_model.LogisticRegression(
 mul_lr.fit(mainarray, train_y)
 #####################################################
 
-# homepage and the route that loads after form is submitted
+
 @app.route("/", methods=["POST", "GET"])
 def home():
     if request.method == "GET":
         return render_template("index.html")
 
     else:
+        age = int(request.form["age"])
+        if age < 17:
+            age = 17
+        elif age > 28:
+            age = 28
 
         inputdata = [
             [
                 request.form["gender"],
-                request.form["age"],
-                request.form["openness"],
-                request.form["neuroticism"],
-                request.form["conscientiousness"],
-                request.form["agreeableness"],
-                request.form["extraversion"],
+                age,
+                int(request.form["openness"]),
+                int(request.form["neuroticism"]),
+                int(request.form["conscientiousness"]),
+                int(request.form["agreeableness"]),
+                int(request.form["extraversion"]),
             ]
         ]
 
@@ -74,7 +79,19 @@ def home():
         DF.index = DF.index + 1
         DF.index.names = ["Person No"]
 
-        return render_template("res.html", per=DF["Predicted Personality"].tolist()[0])
+        return render_template(
+            "result.html", per=DF["Predicted Personality"].tolist()[0]
+        )
+
+
+@app.route("/learn")
+def learn():
+    return render_template("learn.html")
+
+
+@app.route("/working")
+def working():
+    return render_template("working.html")
 
 
 # Handling error 404
@@ -90,4 +107,4 @@ def internal_error(error):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)  # change this in production
+    app.run()  # change this in production

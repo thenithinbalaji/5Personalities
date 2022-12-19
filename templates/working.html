@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block main %}
+<div class="w-full flex flex-row justify-center">
+
+    <div class="w-3/4 mt-16 mb-16 sm:text-lg">
+        <h1 class="text-3xl md:text-5xl font-[Montserrat] font-black">How does this test work?</h1>
+        <h3 class="text-md md:text-2xl font-[Montserrat] font-semibold">
+            This is an Open-Source Website, Check out the Source Code
+            <a href="https://github.com/thenithinbalaji/5Personalities" target="_blank"
+                class="text-cyan-600 hover:text-cyan-800">Here</a>
+        </h3>
+
+        <br>
+        <p>
+            This website uses an ML model to predict your personality. The dataset used for training the model can be
+            found
+            <a href="https://github.com/thenithinbalaji/5Personalities/blob/main/dataset.csv" target="_blank"
+                class="text-cyan-600 hover:text-cyan-800">here.</a>
+
+            The classification is done based on Multinomial Logistic Regression.
+        </p>
+
+
+        <br>
+        <p>
+            Whenever a user takes up the test, the input is given to the ML model and the model predicts the
+            personality trait of the user.
+        </p>
+
+        <br>
+        <p>
+            <b>What is Multinomial Logistic Regression?</b> <br>
+            Multinomial Logistic Regression is a classification technique that extends the logistic regression algorithm
+            to solve multiclass possible outcome problems, given one or more independent variables.
+
+            This model is used to predict the probabilities of categorically dependent variable, which has two or more
+            possible outcome classes. Whereas the logistic regression model is used when the dependent categorical
+            variable has two outcome classes for example, students can either “Pass” or “Fail” in an exam or bank
+            manager can either “Grant” or “Reject” the loan for a person.
+        </p>
+
+
+
+        <a href="\#test" type="submit"
+            class="my-5 shadow-xl bg-blue-400 hover:bg-blue-300 text-white font-bold py-2 px-4 border-b-4 border-blue-500 hover:border-blue-400 rounded">
+            Take The Test
+        </a>
+
+    </div>
+
+
+
+</div>
+{% endblock %}
