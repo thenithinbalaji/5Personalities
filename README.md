@@ -20,10 +20,15 @@ Open <http://localhost:5000> to view it in your browser.
 
 ## Missing Modules
 
-Recommended to create ***virtual environment*** and install modules from requirements.txt using:
+Since the app uses a specific version of certain modules, it is highly recommended to create a virtual environment and then install the modules from requirements.txt
+
+```bash
+python -m virtualenv venv
+venv/scripts/activate
+```
+
+Install modules from requirements.txt using:
 
 ```bash
 pip install -r requirements.txt
 ```
-
-**Since the app uses a specific version of certain modules, it is highly recommended to create a virtual environment and then install the modules from requirements.txt**
