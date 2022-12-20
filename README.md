@@ -1,4 +1,4 @@
-# Getting Started with 5 Personalities Web App
+# Getting Started with [5 Personalities Web App](https://5personalities.thenithinbalaji.repl.co)
 
 This project was created using [Sklearn](https://scikit-learn.org/stable/) and [Flask](https://flask.palletsprojects.com/en/2.2.x/)
  <p align="center">
@@ -6,6 +6,8 @@ This project was created using [Sklearn](https://scikit-learn.org/stable/) and [
     <img src="https://skillicons.dev/icons?i=py,html,tailwind,flask" />
   </a>
 </p>
+
+Check out the live site at **[5personalities.thenithinbalaji.repl.co](https://5personalities.thenithinbalaji.repl.co/)**
 
 ## Running the Server
 
