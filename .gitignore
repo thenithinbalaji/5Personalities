@@ -4,3 +4,9 @@ venv
 
 # custom ignores for nithin
 temp.py
+
+# ignores for replit files to not come to GitHub
+.replit
+poetry.lock
+pyproject.toml
+replit.nix
