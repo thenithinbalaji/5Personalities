@@ -3,11 +3,13 @@
 This project was created using [Sklearn](https://scikit-learn.org/stable/) and [Flask](https://flask.palletsprojects.com/en/2.2.x/)
  <p align="center">
   <a href="#">
-    <img src="https://skillicons.dev/icons?i=py,html,tailwind,flask" />
+    <img src="https://skillicons.dev/icons?i=py,html,tailwindcss,flask" />
   </a>
 </p>
 
 Check out the live site at **[5personalities.thenithinbalaji.repl.co](https://5personalities.thenithinbalaji.repl.co/)**
+
+<a href="https://www.buymeacoffee.com/thenithinbalaji" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
 
 ## Running the Server
 
