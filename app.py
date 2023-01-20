@@ -54,11 +54,11 @@ def home():
             [
                 request.form["gender"],
                 age,
-                int(request.form["openness"]),
-                int(request.form["neuroticism"]),
-                int(request.form["conscientiousness"]),
-                int(request.form["agreeableness"]),
-                int(request.form["extraversion"]),
+                9 - int(request.form["openness"]),
+                9 - int(request.form["neuroticism"]),
+                9 - int(request.form["conscientiousness"]),
+                9 - int(request.form["agreeableness"]),
+                9 - int(request.form["extraversion"]),
             ]
         ]
 
@@ -107,4 +107,9 @@ def internal_error(error):
 
 
 if __name__ == "__main__":
-    app.run()  # change this in production
+
+    # use 0.0.0.0 for replit hosting
+    app.run(host="0.0.0.0", port=8080)
+
+    # for localhost testing
+    # app.run()
