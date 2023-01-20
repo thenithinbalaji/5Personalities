@@ -54,11 +54,11 @@ def home():
             [
                 request.form["gender"],
                 age,
-                int(request.form["openness"]),
-                int(request.form["neuroticism"]),
-                int(request.form["conscientiousness"]),
-                int(request.form["agreeableness"]),
-                int(request.form["extraversion"]),
+                9 - int(request.form["openness"]),
+                9 - int(request.form["neuroticism"]),
+                9 - int(request.form["conscientiousness"]),
+                9 - int(request.form["agreeableness"]),
+                9 - int(request.form["extraversion"]),
             ]
         ]
 
